@@ -5,6 +5,9 @@ const initialState = {
     isLoading: false,
     error: null,
 }
+
+// slice is used for particular type of data
+
 export const postSlice = createSlice(
     {
         name: 'posts',

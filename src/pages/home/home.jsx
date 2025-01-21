@@ -7,7 +7,7 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, {  useState } from "react";
 import CustomInput from "../../components/input/input";
 import "./home.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -17,6 +17,9 @@ const Home = () => {
   const dispatch = useDispatch();
   const todos = useSelector((state) => state.todo.todos);
   const user = JSON.parse(localStorage.getItem("current-user"));
+
+  // let todosdb = JSON.parse(localStorage.getItem("persist:todos"));
+  console.log(user.particularUser  )
 
   const [input, setInput] = useState({
     title: "",
@@ -32,7 +35,6 @@ const Home = () => {
   });
 
   const [currentIndex, setCurrentIndex] = useState(null);
-
   const handleInputChange = (field, value) => {
     setInput((prevInput) => ({
       ...prevInput,
@@ -57,7 +59,7 @@ const Home = () => {
     if (editOrAdd && currentIndex !== null) {
       dispatch(
         editTodo({
-          data: { ...input, todoOwner: user.email },
+          data: { ...input, todoOwner: user.particularUser.id },
           index: currentIndex,
         })
       );
@@ -65,11 +67,10 @@ const Home = () => {
       dispatch(
         addTodo({
           ...input,
-          todoOwner: user.id,
+          todoOwner: user.particularUser.id,
         })
       );
     }
-
     resetForm();
   };
 
@@ -156,7 +157,7 @@ const Home = () => {
             InputLabelProps={{
               shrink: true,
             }}
-            disablePast
+            
             sx={{ width: "225px", input: { height: "20px" } }}
           />
         </Box>
@@ -177,13 +178,13 @@ const Home = () => {
           sx={{ width: "100px", margin: "10px" }}
           variant="contained"
         >
-          {editOrAdd ? "Edit" : "Add"}
+          {editOrAdd ? "Save" : "Add"}
         </Button>
       </Box>
 
       <Grid container spacing={2}>
-        {todos
-          .filter((todo) => todo.todoOwner === user.id)
+        { todos && todos
+          .filter((todo) => todo.todoOwner ===  user.particularUser.id)
           .map((todo, index) => (
             <Grid item xs={12} sm={6} md={4} key={index}>
               <Card sx={{ backgroundColor: "#f5f5f5", position: "relative" }}>

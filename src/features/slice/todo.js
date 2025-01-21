@@ -9,6 +9,7 @@ export const todoSlice = createSlice({
   initialState,
   reducers: {
     addTodo: (state, action) => {
+      console.log(action.payload);
       state.todos = [...state.todos, action.payload];
     },
     deleteTodo: (state, action) => {
@@ -19,6 +20,7 @@ export const todoSlice = createSlice({
     },
   },
 });
+
 export const { addTodo, deleteTodo, editTodo } = todoSlice.actions;
 
 export default todoSlice.reducer;

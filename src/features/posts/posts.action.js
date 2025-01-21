@@ -2,6 +2,7 @@ import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from 'axios'
 import { getAllPosts } from "./posts.type";
 
+// this is action / action creator 
 
 export const fetchPost = createAsyncThunk(getAllPosts,
     async () => {

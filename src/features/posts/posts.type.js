@@ -1,1 +1,1 @@
-export const getAllPosts='post/fetchPost'
+export const getAllPosts='posts/fetchPost'
