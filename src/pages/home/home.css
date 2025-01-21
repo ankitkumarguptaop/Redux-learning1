@@ -1,0 +1,12 @@
+.custon-input-rapper{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /* height: 100vh; */
+    div{
+        margin: 25px;
+        height: 100px;
+    }
+}
