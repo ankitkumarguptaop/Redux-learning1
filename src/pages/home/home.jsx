@@ -7,7 +7,7 @@ import {
   Typography,
   TextField,
 } from "@mui/material";
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import CustomInput from "../../components/input/input";
 import "./home.css";
 import { useDispatch, useSelector } from "react-redux";
@@ -19,7 +19,7 @@ const Home = () => {
   const user = JSON.parse(localStorage.getItem("current-user"));
 
   // let todosdb = JSON.parse(localStorage.getItem("persist:todos"));
-  console.log(user.particularUser  )
+  console.log(user.particularUser);
 
   const [input, setInput] = useState({
     title: "",
@@ -118,7 +118,7 @@ const Home = () => {
               color: "red",
               marginTop: "-14px",
               marginBottom: "13px",
-              marginLeft:"10px",
+              marginLeft: "10px",
             }}
           >
             Enter correct title
@@ -141,7 +141,7 @@ const Home = () => {
               color: "red",
               marginTop: "-14px",
               marginBottom: "13px",
-              marginLeft:"10px",
+              marginLeft: "10px",
             }}
           >
             Enter correct description
@@ -157,7 +157,6 @@ const Home = () => {
             InputLabelProps={{
               shrink: true,
             }}
-            
             sx={{ width: "225px", input: { height: "20px" } }}
           />
         </Box>
@@ -166,7 +165,7 @@ const Home = () => {
             style={{
               color: "red",
               marginTop: "-14px",
-              marginLeft:"10px",
+              marginLeft: "10px",
               marginBottom: "13px",
             }}
           >
@@ -183,53 +182,54 @@ const Home = () => {
       </Box>
 
       <Grid container spacing={2}>
-        { todos && todos
-          .filter((todo) => todo.todoOwner ===  user.particularUser.id)
-          .map((todo, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Card sx={{ backgroundColor: "#f5f5f5", position: "relative" }}>
-                <CardContent>
-                  <Typography variant="h6" gutterBottom>
-                    {todo.title}
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    {todo.description}
-                  </Typography>
-                  <Typography
-                    variant="body2"
-                    color="primary"
-                    sx={{ marginTop: "10px" }}
+        {todos &&
+          todos
+            .filter((todo) => todo.todoOwner === user.particularUser.id)
+            .map((todo, index) => (
+              <Grid item xs={12} sm={6} md={4} key={index}>
+                <Card sx={{ backgroundColor: "#f5f5f5", position: "relative" }}>
+                  <CardContent>
+                    <Typography variant="h6" gutterBottom>
+                      {todo.title}
+                    </Typography>
+                    <Typography variant="body2" color="textSecondary">
+                      {todo.description}
+                    </Typography>
+                    <Typography
+                      variant="body2"
+                      color="primary"
+                      sx={{ marginTop: "10px" }}
+                    >
+                      Deadline: {todo.deadline}
+                    </Typography>
+                  </CardContent>
+                  <Box
+                    sx={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      padding: "0 10px 10px",
+                    }}
                   >
-                    Deadline: {todo.deadline}
-                  </Typography>
-                </CardContent>
-                <Box
-                  sx={{
-                    display: "flex",
-                    justifyContent: "space-between",
-                    padding: "0 10px 10px",
-                  }}
-                >
-                  <Button
-                    onClick={() => handleEdit(index)}
-                    size="small"
-                    variant="contained"
-                    sx={{ backgroundColor: "#1976d2" }}
-                  >
-                    Edit
-                  </Button>
-                  <Button
-                    onClick={() => dispatch(deleteTodo(index))}
-                    size="small"
-                    variant="contained"
-                    color="error"
-                  >
-                    Delete
-                  </Button>
-                </Box>
-              </Card>
-            </Grid>
-          ))}
+                    <Button
+                      onClick={() => handleEdit(index)}
+                      size="small"
+                      variant="contained"
+                      sx={{ backgroundColor: "#1976d2" }}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      onClick={() => dispatch(deleteTodo(index))}
+                      size="small"
+                      variant="contained"
+                      color="error"
+                    >
+                      Delete
+                    </Button>
+                  </Box>
+                </Card>
+              </Grid>
+            ))}
       </Grid>
     </Box>
   );
